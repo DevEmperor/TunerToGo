@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TunerToGo</string>
+    <string name="ttg_no_permission">TunerToGo needs permission to access the microphone.</string>
+</resources>
