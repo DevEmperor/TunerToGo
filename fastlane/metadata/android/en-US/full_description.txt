@@ -10,7 +10,7 @@ TunerToGo turns your Wear OS watch into a precise tuner – always on your wrist
 • Instrument mode with automatic string detection
 • Guitar: Standard, E♭ Standard, D Standard, Drop D, Drop C, DADGAD, Open D, Open G, Open E, Open C
 • 7-string guitar, bass (4, 5 and 6 strings), ukulele (standard, low G, D tuning, baritone), violin, viola, cello, double bass, mandolin, banjo
-• Tap a string to lock the tuner on it – handy when a string is far off
+• Turn the crown or bezel (or tap the dial) to lock the tuner onto one string – handy when a string is far off
 • Tuned strings get a tick
 • Chromatic mode for every other instrument and for your voice
 
@@ -27,6 +27,9 @@ TunerToGo turns your Wear OS watch into a precise tuner – always on your wrist
 • Tile to start tuning with one tap
 • Works standalone, no phone app needed
 • Keeps the screen on while you tune and lets it sleep again when you stop
+
+<b>Pay once, that's it</b>
+No ads, no in-app purchases, no subscriptions, no account – every feature is included.
 
 <b>Private</b>
 The microphone is only used while the tuner is open. Sound is analysed live on your watch; nothing is recorded, stored or sent anywhere. TunerToGo has no internet access at all.

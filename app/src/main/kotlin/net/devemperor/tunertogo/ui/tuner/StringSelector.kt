@@ -5,7 +5,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -20,7 +19,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.selected
@@ -37,8 +35,9 @@ import net.devemperor.tunertogo.ui.theme.TunerColors
 
 /**
  * The open strings of the current tuning in a gentle arc that follows the round bezel. The
- * string being tuned is highlighted, tuned strings get a green tint, and tapping a string pins
- * the tuner to it (useful when a string is so far off that auto detection picks its neighbour).
+ * string being tuned is highlighted, tuned strings get a green tint and a pinned string an amber
+ * ring. The chips only display: seven 48 dp touch targets don't fit a watch, so strings are
+ * pinned with the crown or a tap on the dial instead (see TunerScreen).
  */
 @Composable
 fun StringSelector(
@@ -49,7 +48,6 @@ fun StringSelector(
     activeColor: Color,
     lockedIndex: Int?,
     tunedStrings: Set<Int>,
-    onToggle: (Int) -> Unit,
     size: Dp,
     modifier: Modifier = Modifier,
 ) {
@@ -70,7 +68,6 @@ fun StringSelector(
                 tuned = index in tunedStrings,
                 locked = index == lockedIndex,
                 diameter = chip,
-                onClick = { onToggle(index) },
                 modifier = Modifier.offset(y = -curveDepth * centered * centered),
             )
         }
@@ -90,7 +87,6 @@ private fun StringChip(
     tuned: Boolean,
     locked: Boolean,
     diameter: Dp,
-    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scheme = MaterialTheme.colorScheme
@@ -131,7 +127,6 @@ private fun StringChip(
             .clip(CircleShape)
             .background(container)
             .border(border, CircleShape)
-            .clickable(role = Role.Button, onClick = onClick)
             .semantics {
                 contentDescription = description
                 selected = locked
@@ -149,7 +144,7 @@ private fun StringChip(
             Text(
                 text = text,
                 color = content,
-                fontSize = diameter.fixedSp(if (text.length <= 1) 0.5f else if (text.length == 2) 0.4f else 0.32f),
+                fontSize = diameter.fixedSp(if (text.length <= 1) 0.5f else if (text.length == 2) 0.4f else 0.32f, minSp = 10f),
                 fontWeight = FontWeight.SemiBold,
                 maxLines = 1,
             )

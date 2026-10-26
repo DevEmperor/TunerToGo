@@ -5,8 +5,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.input.InputManager
 import android.net.Uri
 import android.provider.Settings
+import android.view.InputDevice
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.animateColorAsState
@@ -25,12 +27,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,11 +45,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.input.rotary.onRotaryScrollEvent
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.layout.FirstBaseline
@@ -63,6 +72,7 @@ import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.EdgeButton
 import androidx.wear.compose.material3.EdgeButtonSize
 import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
+import androidx.wear.compose.foundation.requestFocusOnHierarchyActive
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.Icon
 import androidx.wear.compose.material3.LocalContentColor
@@ -195,11 +205,34 @@ private fun TunerContent(
     val edgeText = edgeLabel(instrument, tuning)
     val edgeDescription = stringResource(R.string.tuner_open_menu) + ", " + edgeText
 
+    // Crown (or rotating bezel) and a tap on the dial step the string lock: Auto, 1 … n, Auto.
+    val stringCount = tuning.strings.size
+    val haptics = LocalHapticFeedback.current
+    val rotaryStep = with(LocalDensity.current) { ROTARY_STEP.toPx() }
+    var rotaryAccumulated by remember { mutableFloatStateOf(0f) }
+    val stepLock = { direction: Int ->
+        viewModel.stepStringLock(direction, stringCount)
+        haptics.performHapticFeedback(HapticFeedbackType.SegmentTick)
+    }
+    val rotaryModifier = if (tuning.isChromatic) Modifier else Modifier
+        .onRotaryScrollEvent { event ->
+            val delta = event.verticalScrollPixels
+            if (delta * rotaryAccumulated < 0) rotaryAccumulated = 0f // direction changed
+            rotaryAccumulated += delta
+            if (abs(rotaryAccumulated) >= rotaryStep) {
+                stepLock(if (rotaryAccumulated > 0) 1 else -1)
+                rotaryAccumulated = 0f
+            }
+            true
+        }
+        .requestFocusOnHierarchyActive()
+        .focusable()
+
     // Immersive screen: no clock, the dial owns the top edge.
     ScreenScaffold(timeText = {}) {
-        BoxWithConstraints(Modifier.fillMaxSize()) {
+        BoxWithConstraints(Modifier.fillMaxSize().then(rotaryModifier)) {
             val d = minOf(maxWidth, maxHeight)
-            val layout = DialLayout(d, tuning.strings.size)
+            val layout = DialLayout(d, stringCount)
             TunerDial(
                 style = settings.displayStyle,
                 cents = { cents.value },
@@ -214,6 +247,7 @@ private fun TunerContent(
                 IdleIndicator(
                     levelDb = reading.levelDb,
                     silenced = uiState.silenced,
+                    hint = if (tuning.isChromatic) null else stringResource(stringLockHint()),
                     size = d,
                     modifier = Modifier.align(Alignment.TopCenter).offset(y = layout.idleTop),
                 )
@@ -237,9 +271,22 @@ private fun TunerContent(
                     activeColor = color.value,
                     lockedIndex = lockedString,
                     tunedStrings = tunedStrings,
-                    onToggle = viewModel::toggleStringLock,
                     size = d,
                     modifier = Modifier.align(Alignment.TopCenter).offset(y = layout.chipsTop),
+                )
+                // The middle of the dial is one large touch target for picking a string.
+                val pickLabel = stringResource(R.string.tuner_pick_string)
+                Box(
+                    Modifier
+                        .align(Alignment.TopCenter)
+                        .offset(y = layout.centsTop)
+                        .size(width = d * 0.6f, height = layout.chipsTop - layout.centsTop)
+                        .clickable(
+                            interactionSource = null,
+                            indication = null,
+                            onClickLabel = pickLabel,
+                            role = Role.Button,
+                        ) { stepLock(1) },
                 )
             } else {
                 CalibrationHint(settings, d, Modifier.align(Alignment.TopCenter).offset(y = layout.chipsTop))
@@ -260,7 +307,7 @@ private fun TunerContent(
                     color = { contentColor },
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = labelStyle.fontSize),
+                    autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = labelStyle.fontSize),
                 )
             }
         }
@@ -285,7 +332,7 @@ private fun CalibrationHint(settings: TunerSettings, size: Dp, modifier: Modifie
     Text(
         text = parts.joinToString(" · "),
         color = MaterialTheme.colorScheme.secondary,
-        fontSize = size.fixedSp(0.052f),
+        fontSize = size.fixedSp(0.052f, minSp = 10f),
         maxLines = 1,
         textAlign = TextAlign.Center,
         modifier = modifier.fillMaxWidth(),
@@ -356,14 +403,16 @@ private fun Readout(
         ) {
             NoteText(label, size.fixedSp(0.235f), if (reading.inTune) TunerColors.InTune else MaterialTheme.colorScheme.onSurface)
         }
+        // Bottom-aligned: with a large font setting the line grows upwards into the empty space
+        // below the note letter instead of into the string row.
         Box(
             Modifier.align(Alignment.TopCenter).offset(y = layout.hzTop).height(layout.hzHeight).fillMaxWidth(),
-            contentAlignment = Alignment.Center,
+            contentAlignment = Alignment.BottomCenter,
         ) {
             Text(
                 text = stringResource(R.string.tuner_hz, String.format(LocalConfiguration.current.locales[0], "%.1f", reading.frequency)),
                 color = TunerColors.Muted,
-                fontSize = size.fixedSp(0.058f),
+                fontSize = size.fixedSp(0.058f, minSp = 12f),
                 maxLines = 1,
             )
         }
@@ -422,7 +471,7 @@ private fun NoteText(label: NoteLabel, fontSize: TextUnit, color: Color) {
 }
 
 @Composable
-private fun IdleIndicator(levelDb: Double, silenced: Boolean, size: Dp, modifier: Modifier = Modifier) {
+private fun IdleIndicator(levelDb: Double, silenced: Boolean, hint: String?, size: Dp, modifier: Modifier = Modifier) {
     // Input level from -70 dBFS (silence) to -20 dBFS (loud) drives a soft ring around the mic,
     // so the user sees that the watch is listening even before a clear note arrives.
     val level by animateFloatAsState(
@@ -432,7 +481,7 @@ private fun IdleIndicator(levelDb: Double, silenced: Boolean, size: Dp, modifier
     )
     val ringColor = MaterialTheme.colorScheme.primary
     Column(modifier.width(size * 0.8f), horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(Modifier.size(size * 0.24f), contentAlignment = Alignment.Center) {
+        Box(Modifier.size(size * 0.21f), contentAlignment = Alignment.Center) {
             Canvas(Modifier.fillMaxSize()) {
                 val base = this.size.minDimension * 0.30f
                 drawCircle(ringColor.copy(alpha = 0.10f + 0.25f * level), radius = base + this.size.minDimension * 0.2f * level)
@@ -445,13 +494,23 @@ private fun IdleIndicator(levelDb: Double, silenced: Boolean, size: Dp, modifier
                 modifier = Modifier.size(size * 0.11f),
             )
         }
-        Spacer(Modifier.height(size * 0.03f))
+        Spacer(Modifier.height(size * 0.02f))
         Text(
             text = stringResource(if (silenced) R.string.tuner_silenced else R.string.tuner_play_a_note),
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
         )
+        if (hint != null && !silenced) {
+            Text(
+                text = hint,
+                fontSize = size.fixedSp(0.05f, minSp = 10f),
+                color = TunerColors.Muted,
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                lineHeight = size.fixedSp(0.055f, minSp = 11f),
+            )
+        }
     }
 }
 
@@ -489,12 +548,34 @@ private fun MessageScreen(iconRes: Int, text: String, actionLabel: String, onAct
     }
 }
 
-/** Text sizes on the dial scale with the screen, not with the system font scale. */
+/**
+ * Text sizes on the dial scale with the screen rather than the font setting, so the round
+ * layout holds together; [minSp] keeps small text readable (and growing with the font setting)
+ * on small watches.
+ */
 @Composable
-internal fun Dp.fixedSp(fraction: Float): TextUnit {
-    val fontScale = LocalDensity.current.fontScale
-    return (value * fraction / fontScale).sp
+internal fun Dp.fixedSp(fraction: Float, minSp: Float = 0f): TextUnit {
+    // Dp.toSp() goes through the (non-linear since Android 14) font scale converter, so the
+    // text really ends up at this many dp whatever the font setting.
+    val fixed = with(LocalDensity.current) { (this@fixedSp * fraction).toSp() }
+    return if (fixed.value >= minSp) fixed else minSp.sp
 }
+
+/** Turn the crown where there is one, otherwise tap. */
+@Composable
+private fun stringLockHint(): Int {
+    val context = LocalContext.current
+    val hasRotary = remember {
+        val input = context.getSystemService(InputManager::class.java)
+        input?.inputDeviceIds?.any { id ->
+            InputDevice.getDevice(id)?.supportsSource(InputDevice.SOURCE_ROTARY_ENCODER) == true
+        } == true
+    }
+    return if (hasRotary) R.string.tuner_hint_crown else R.string.tuner_hint_tap
+}
+
+/** Crown rotation per string step. */
+private val ROTARY_STEP = 36.dp
 
 private fun Context.hasMicrophonePermission(): Boolean =
     ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED

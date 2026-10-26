@@ -31,7 +31,8 @@
 - **Calm display** – the needle is smoothed, single-frame slips (pick attack, octave jumps)
   are ignored, and the last note stays on screen for a moment after the string stops.
 - **Instrument mode** – the tuner finds the string you play and measures against it, even
-  when it is far off. Tap a string to lock onto it; tuned strings get a tick.
+  when it is far off. Turn the crown (or tap the dial) to lock onto one string; tuned strings
+  get a tick.
 - **Feel it** – a short vibration when the note is in tune, so your eyes can stay on the pegs.
 - **Gauge or strobe** – a colour-coded gauge, or a strobe that stands still when you hit
   the note.
@@ -41,6 +42,7 @@
 - **Reference tone** to tune by ear, on watches with a speaker.
 - **Tile** to start tuning with one tap; works standalone, no phone app needed.
 - **Private** – no internet permission at all; nothing is recorded or stored.
+- **Pay once** – no ads, no in-app purchases, no subscriptions, no account.
 - English and German.
 
 ## Screenshots
@@ -76,15 +78,14 @@
 
 ## Install
 
-**From Google Play** on the watch, or from the Play Store on the paired phone.
+**From Google Play** on the watch, or from the Play Store on the paired phone – a one-time
+purchase without ads or in-app purchases, which keeps the development going.
 Requires Wear OS 3 or newer and a watch with a microphone.
 
-**From a release APK** (for testing): enable *Developer options* and *ADB debugging* on the
-watch, connect over Wi-Fi and run
-
-```bash
-adb install TunerToGo-2.0.0.apk
-```
+**Build it yourself:** the source is open, so you are welcome to build and install your own
+copy (see [Development](#development)); on the watch, enable *Developer options* and
+*Wireless debugging* and run `./gradlew :app:installRelease` (signed with your debug key
+when there is no `keystore.properties`).
 
 ## How it works
 
@@ -112,8 +113,9 @@ synthetic sines, plucked strings (Karplus-Strong), missing fundamentals and nois
 <summary><b>The tuner shows the wrong string.</b></summary>
 
 When a string is tuned down by more than a few semitones, its pitch can be closer to the
-neighbouring string. Tap the string you are tuning to lock the tuner onto it; tap it again
-to return to automatic detection.
+neighbouring string. Turn the crown (or rotating bezel) to lock the tuner onto the string you
+are tuning – it steps through *Auto*, every string and back to *Auto*. On watches without a
+crown, tap the middle of the dial instead. A locked string has an amber ring.
 </details>
 
 <details>
@@ -169,6 +171,7 @@ watch but not accepted by Play.
 | `app/src/main/kotlin/…/ui/` | Compose screens: dial, strobe, menu, pickers |
 | `app/src/main/kotlin/…/tile/` | The tile |
 | `fastlane/metadata/android/` | Play Store listing in English and German |
+| `docs/play-console.md` | Publishing checklist with the answers for every Play Console form |
 | `art/`, `tools/` | Icon and feature graphic sources, screenshot and asset scripts |
 
 **Testing without an instrument:** the debug build accepts a synthetic input instead of the

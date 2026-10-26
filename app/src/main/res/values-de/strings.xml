@@ -7,6 +7,9 @@
     <string name="tuner_note_description">%1$s, %2$s Cent</string>
     <string name="tuner_silenced">Eine andere App nutzt das Mikrofon</string>
     <string name="tuner_open_menu">Instrument und Einstellungen</string>
+    <string name="tuner_pick_string">Saite wählen</string>
+    <string name="tuner_hint_crown">Krone drehen: Saite wählen</string>
+    <string name="tuner_hint_tap">Hier tippen: Saite wählen</string>
     <string name="tuner_string_auto">Saite %1$s</string>
     <string name="tuner_string_locked">Saite %1$s, festgelegt</string>
     <string name="tuner_string_tuned">Saite %1$s, gestimmt</string>

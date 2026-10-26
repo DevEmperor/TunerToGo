@@ -22,7 +22,6 @@ import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.collectLatest
 import net.devemperor.tunertogo.music.NoteNames
 import net.devemperor.tunertogo.settings.DisplayStyle
@@ -81,7 +80,7 @@ fun TunerDial(
     Spacer(
         modifier.drawWithCache {
             val d = size.minDimension
-            val labelStyle = TextStyle(color = TunerColors.Muted, fontSize = (d * 0.07f / density / fontScale).sp)
+            val labelStyle = TextStyle(color = TunerColors.Muted, fontSize = (d * 0.07f).toDp().toSp())
             val flat = textMeasurer.measure(NoteNames.FLAT, labelStyle)
             val sharp = textMeasurer.measure(NoteNames.SHARP, labelStyle)
             val geometry = DialGeometry(size, d)

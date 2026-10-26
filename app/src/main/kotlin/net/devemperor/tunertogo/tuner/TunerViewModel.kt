@@ -136,9 +136,12 @@ class TunerViewModel(
         restart.update { it + 1 }
     }
 
-    /** Pins the tuner to one string; tapping the pinned string again returns to auto mode. */
-    fun toggleStringLock(index: Int) {
-        _lockedString.update { if (it == index) null else index }
+    /**
+     * Steps the string lock through automatic detection, string 1 … n and back to automatic
+     * ([direction] +1 or -1), driven by the crown or a tap on the dial.
+     */
+    fun stepStringLock(direction: Int, stringCount: Int) {
+        _lockedString.update { steppedStringLock(it, direction, stringCount) }
     }
 
     fun updateSettings(transform: (TunerSettings) -> TunerSettings) {
@@ -178,6 +181,17 @@ class TunerViewModel(
  */
 private fun TunerReading.quantizedWhileIdle(): TunerReading =
     if (state == SignalState.IDLE) copy(levelDb = Math.round(levelDb / 3.0) * 3.0) else this
+
+/** Next string lock in the cycle Auto (null), 0, 1, …, [stringCount] − 1, Auto. */
+internal fun steppedStringLock(current: Int?, direction: Int, stringCount: Int): Int? {
+    if (stringCount == 0) return null
+    val position = (current ?: -1) + direction // -1 stands for automatic detection
+    return when {
+        position < -1 -> stringCount - 1
+        position == -1 || position >= stringCount -> null
+        else -> position
+    }
+}
 
 fun TunerSettings.toConfig(lockedString: Int?): TunerConfig = TunerConfig(
     referenceA4 = referenceA4.toDouble(),

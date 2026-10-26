@@ -11,6 +11,9 @@
     <string name="tuner_note_description">%1$s, %2$s cents</string>
     <string name="tuner_silenced">Another app is using the microphone</string>
     <string name="tuner_open_menu">Instrument and settings</string>
+    <string name="tuner_pick_string">Pick a string</string>
+    <string name="tuner_hint_crown">Turn the crown to pick a string</string>
+    <string name="tuner_hint_tap">Tap here to pick a string</string>
     <string name="tuner_string_auto">%1$s string</string>
     <string name="tuner_string_locked">%1$s string, locked</string>
     <string name="tuner_string_tuned">%1$s string, tuned</string>

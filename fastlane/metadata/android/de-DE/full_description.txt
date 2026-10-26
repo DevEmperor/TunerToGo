@@ -10,7 +10,7 @@ TunerToGo macht deine Wear-OS-Uhr zum präzisen Stimmgerät – immer am Handgel
 • Instrumentmodus mit automatischer Saitenerkennung
 • Gitarre: Standard, E♭-Standard, D-Standard, Drop D, Drop C, DADGAD, Open D, Open G, Open E, Open C
 • 7-saitige Gitarre, Bass (4, 5 und 6 Saiten), Ukulele (Standard, Low G, D-Stimmung, Bariton), Violine, Bratsche, Cello, Kontrabass, Mandoline, Banjo
-• Tippe auf eine Saite, um das Stimmgerät auf sie festzulegen – praktisch, wenn eine Saite weit verstimmt ist
+• Drehe Krone oder Lünette (oder tippe auf die Anzeige), um das Stimmgerät auf eine Saite festzulegen – praktisch, wenn eine Saite weit verstimmt ist
 • Gestimmte Saiten bekommen einen Haken
 • Chromatischer Modus für alle anderen Instrumente und für deine Stimme
 
@@ -27,6 +27,9 @@ TunerToGo macht deine Wear-OS-Uhr zum präzisen Stimmgerät – immer am Handgel
 • Kachel zum Starten mit einem Tippen
 • Funktioniert eigenständig, keine Smartphone-App nötig
 • Hält das Display beim Stimmen an und lässt es danach wieder schlafen
+
+<b>Einmal kaufen, fertig</b>
+Keine Werbung, keine In-App-Käufe, kein Abo, kein Konto – alle Funktionen sind enthalten.
 
 <b>Privat</b>
 Das Mikrofon wird nur genutzt, solange das Stimmgerät geöffnet ist. Der Ton wird live auf der Uhr ausgewertet; nichts wird aufgezeichnet, gespeichert oder übertragen. TunerToGo hat überhaupt keinen Internetzugriff.

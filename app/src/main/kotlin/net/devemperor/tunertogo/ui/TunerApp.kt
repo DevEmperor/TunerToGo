@@ -55,50 +55,70 @@ fun TunerApp(pitchSource: PitchSource, initialRoutes: List<String> = emptyList()
 
     TunerTheme {
         AppScaffold {
-            val current = settings ?: return@AppScaffold
+            // Show nothing until the stored settings are loaded (a few milliseconds).
+            if (settings == null) return@AppScaffold
             val update: ((TunerSettings) -> TunerSettings) -> Unit = viewModel::updateSettings
             val selectTuning: (Tuning) -> Unit = { tuning ->
                 viewModel.updateSettings { it.copy(tuningId = tuning.id) }
                 navController.popBackStack(Routes.TUNER, inclusive = false)
             }
 
+            // Every destination reads the settings itself (WithSettings): the content lambdas of
+            // the navigation graph are kept from when the graph was built, so settings captured
+            // out here would go stale on screens that stay open, such as the menu's switches.
             // Every navigation callback goes through whenResumed(): a screen that is already
             // leaving (a quick double tap during the transition) must not navigate a second time.
             SwipeDismissableNavHost(navController = navController, startDestination = Routes.TUNER) {
                 composable(Routes.TUNER) {
-                    TunerScreen(viewModel, current, onOpenMenu = whenResumed { navController.navigate(Routes.MENU) })
+                    WithSettings(viewModel) { current ->
+                        TunerScreen(viewModel, current, onOpenMenu = whenResumed { navController.navigate(Routes.MENU) })
+                    }
                 }
                 composable(Routes.MENU) {
-                    MenuScreen(
-                        settings = current,
-                        onUpdate = update,
-                        onOpenInstruments = whenResumed { navController.navigate(Routes.INSTRUMENTS) },
-                        onOpenReferencePitch = whenResumed { navController.navigate(Routes.REFERENCE_PITCH) },
-                        onOpenReferenceTone = whenResumed { navController.navigate(Routes.REFERENCE_TONE) },
-                        onOpenOption = whenResumed { key: OptionKey -> navController.navigate(Routes.option(key)) },
-                        onOpenAbout = whenResumed { navController.navigate(Routes.ABOUT) },
-                    )
+                    WithSettings(viewModel) { current ->
+                        MenuScreen(
+                            settings = current,
+                            onUpdate = update,
+                            onOpenInstruments = whenResumed { navController.navigate(Routes.INSTRUMENTS) },
+                            onOpenReferencePitch = whenResumed { navController.navigate(Routes.REFERENCE_PITCH) },
+                            onOpenReferenceTone = whenResumed { navController.navigate(Routes.REFERENCE_TONE) },
+                            onOpenOption = whenResumed { key: OptionKey -> navController.navigate(Routes.option(key)) },
+                            onOpenAbout = whenResumed { navController.navigate(Routes.ABOUT) },
+                        )
+                    }
                 }
                 composable(Routes.INSTRUMENTS) {
-                    InstrumentsScreen(
-                        settings = current,
-                        onSelectTuning = whenResumed(selectTuning),
-                        onOpenTunings = whenResumed { instrument: Instrument -> navController.navigate(Routes.tunings(instrument.id)) },
-                    )
+                    WithSettings(viewModel) { current ->
+                        InstrumentsScreen(
+                            settings = current,
+                            onSelectTuning = whenResumed(selectTuning),
+                            onOpenTunings = whenResumed { instrument: Instrument ->
+                                navController.navigate(Routes.tunings(instrument.id))
+                            },
+                        )
+                    }
                 }
                 composable(Routes.TUNINGS) { entry ->
                     val instrument = entry.arguments?.getString("instrument")?.let(Instruments::instrument)
-                    if (instrument != null) TuningsScreen(instrument, current, whenResumed(selectTuning))
+                    if (instrument != null) {
+                        WithSettings(viewModel) { current -> TuningsScreen(instrument, current, whenResumed(selectTuning)) }
+                    }
                 }
                 composable(Routes.REFERENCE_PITCH) {
-                    ReferencePitchScreen(current, update, onDone = whenResumed { navController.popBackStack() })
+                    WithSettings(viewModel) { current ->
+                        ReferencePitchScreen(current, update, onDone = whenResumed { navController.popBackStack() })
+                    }
                 }
                 composable(Routes.OPTION) { entry ->
                     val key = entry.arguments?.getString("key")?.let { name -> OptionKey.entries.firstOrNull { it.name == name } }
-                    if (key != null) OptionScreen(key, current, update, onDone = whenResumed { navController.popBackStack() })
+                    if (key != null) {
+                        WithSettings(viewModel) { current ->
+                            OptionScreen(key, current, update, onDone = whenResumed { navController.popBackStack() })
+                        }
+                    }
                 }
                 composable(Routes.REFERENCE_TONE) {
-                    ReferenceToneScreen(viewModel, current)
+                    WithSettings(viewModel) { current -> ReferenceToneScreen(viewModel, current) }
                 }
                 composable(Routes.ABOUT) {
                     AboutScreen()
@@ -108,6 +128,13 @@ fun TunerApp(pitchSource: PitchSource, initialRoutes: List<String> = emptyList()
             LaunchedEffect(Unit) { initialRoutes.forEach(navController::navigateSafely) }
         }
     }
+}
+
+/** Hands the live settings to [content] (see the comment in [TunerApp]). */
+@Composable
+private fun WithSettings(viewModel: TunerViewModel, content: @Composable (TunerSettings) -> Unit) {
+    val settings by viewModel.settings.collectAsStateWithLifecycle()
+    settings?.let { content(it) }
 }
 
 /** Runs [block] only while the current destination is resumed (see the comment in [TunerApp]). */
