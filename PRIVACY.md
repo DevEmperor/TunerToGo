@@ -32,5 +32,5 @@ off in the app's settings.
 
 ## Contact
 
-Questions about this policy: please open an issue at
+Questions about this policy: <contact@devemperor.net>, or open an issue at
 <https://github.com/DevEmperor/TunerToGo/issues>.

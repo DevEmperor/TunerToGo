@@ -31,4 +31,4 @@ TunerToGo macht deine Wear-OS-Uhr zum präzisen Stimmgerät – immer am Handgel
 <b>Privat</b>
 Das Mikrofon wird nur genutzt, solange das Stimmgerät geöffnet ist. Der Ton wird live auf der Uhr ausgewertet; nichts wird aufgezeichnet, gespeichert oder übertragen. TunerToGo hat überhaupt keinen Internetzugriff.
 
-TunerToGo ist Open Source (MIT-Lizenz): github.com/DevEmperor/TunerToGo
+TunerToGo ist Open Source (Apache-Lizenz 2.0): github.com/DevEmperor/TunerToGo

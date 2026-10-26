@@ -6,7 +6,7 @@
   <a href="https://play.google.com/store/apps/details?id=net.devemperor.tunertogo"><img alt="Google Play" src="https://img.shields.io/badge/google%20play-wear%20os-45e6a6?labelColor=0e1f1b&style=flat-square&logo=googleplay&logoColor=white"></a>
   <a href="https://github.com/DevEmperor/TunerToGo/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/DevEmperor/TunerToGo/ci.yml?branch=master&label=tests&color=45e6a6&labelColor=0e1f1b&style=flat-square"></a>
   <img alt="Wear OS 3+" src="https://img.shields.io/badge/wear%20os-3%2B-45e6a6?labelColor=0e1f1b&style=flat-square">
-  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-45e6a6?labelColor=0e1f1b&style=flat-square"></a>
+  <a href="LICENSE"><img alt="Apache 2.0 license" src="https://img.shields.io/badge/license-Apache%202.0-45e6a6?labelColor=0e1f1b&style=flat-square"></a>
 </p>
 
 <p align="center">
@@ -141,7 +141,8 @@ your ear still hears the right pitch.
 | Microphone | Hearing your instrument, only while the tuner is open |
 | Vibration | The tap when a note is in tune (can be turned off) |
 
-TunerToGo has no internet permission. See the [privacy policy](PRIVACY.md).
+TunerToGo has no internet permission. See the [privacy policy](PRIVACY.md); questions to
+<contact@devemperor.net>.
 </details>
 
 ## Development
@@ -190,4 +191,4 @@ emulator, `tools/render-store-assets.sh` turns them into the store and README gr
 
 ## License
 
-[MIT](LICENSE)
+[Apache License 2.0](LICENSE) – see also [NOTICE](NOTICE).

@@ -74,7 +74,7 @@
 
     <!-- About -->
     <string name="about_version">Version %1$s</string>
-    <string name="about_license">Open source under the MIT License</string>
+    <string name="about_license">Open source under the Apache License 2.0</string>
     <string name="about_privacy">Sound is analyzed on your watch in real time. Nothing is recorded, stored or transmitted.</string>
     <string name="about_source" translatable="false">github.com/DevEmperor/TunerToGo</string>
     <string name="about_author">Made by DevEmperor</string>

@@ -70,7 +70,7 @@
 
     <!-- About -->
     <string name="about_version">Version %1$s</string>
-    <string name="about_license">Open Source unter der MIT-Lizenz</string>
+    <string name="about_license">Open Source unter der Apache-Lizenz 2.0</string>
     <string name="about_privacy">Der Ton wird in Echtzeit auf der Uhr ausgewertet. Nichts wird aufgezeichnet, gespeichert oder übertragen.</string>
     <string name="about_author">Von DevEmperor</string>
 

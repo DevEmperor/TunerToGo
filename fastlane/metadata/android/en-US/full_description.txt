@@ -31,4 +31,4 @@ TunerToGo turns your Wear OS watch into a precise tuner – always on your wrist
 <b>Private</b>
 The microphone is only used while the tuner is open. Sound is analysed live on your watch; nothing is recorded, stored or sent anywhere. TunerToGo has no internet access at all.
 
-TunerToGo is open source (MIT License): github.com/DevEmperor/TunerToGo
+TunerToGo is open source (Apache License 2.0): github.com/DevEmperor/TunerToGo
