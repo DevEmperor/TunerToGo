@@ -16,7 +16,11 @@
 </p>
 
 <p align="center">
-  <a href="https://play.google.com/store/apps/details?id=net.devemperor.tunertogo"><b>Get it on Google Play</b></a> ·
+  <a href="https://play.google.com/store/apps/details?id=net.devemperor.tunertogo"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="220"></a>
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#faq">FAQ</a> ·
   <a href="#development">Development</a>
@@ -191,6 +195,7 @@ emulator, `tools/render-store-assets.sh` turns them into the store and README gr
   Apache License 2.0.
 - Pitch detection after A. de Cheveigné and H. Kawahara, *YIN, a fundamental frequency
   estimator for speech and music*, J. Acoust. Soc. Am. 111 (4), 2002.
+- Google Play and the Google Play logo are trademarks of Google LLC.
 
 ## License
 
