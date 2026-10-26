@@ -147,7 +147,7 @@ your ear still hears the right pitch.
 | Microphone | Hearing your instrument, only while the tuner is open |
 | Vibration | The tap when a note is in tune (can be turned off) |
 
-TunerToGo has no internet permission. See the [privacy policy](PRIVACY.md); questions to
+TunerToGo has no internet permission. See the [privacy policy](PRIVACY_POLICY.md); questions to
 <contact@devemperor.net>.
 </details>
 

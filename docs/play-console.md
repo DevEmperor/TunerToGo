@@ -71,7 +71,7 @@ screenshots for a Wear-only app, tell me and I'll make a proper set.
 
 | Section | Answer |
 | --- | --- |
-| Privacy policy | https://github.com/DevEmperor/TunerToGo/blob/master/PRIVACY.md |
+| Privacy policy | https://github.com/DevEmperor/TunerToGo/blob/master/PRIVACY_POLICY.md |
 | App access | All functionality is available without special access (no login) |
 | Ads | **No**, the app contains no ads |
 | Content rating | Category *All other app types*; every question *No* (no violence, sexuality, profanity, drugs, gambling, user interaction, location sharing, digital purchases, web browsing). Expected: PEGI 3 / USK 0 / Everyone |
