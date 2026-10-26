@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tuner screen -->
+    <string name="tuner_play_a_note">Spiel einen Ton</string>
+    <string name="tuner_cents">%1$s ¢</string>
+    <string name="tuner_hz">%1$s Hz</string>
+    <string name="tuner_note_description">%1$s, %2$s Cent</string>
+    <string name="tuner_silenced">Eine andere App nutzt das Mikrofon</string>
+    <string name="tuner_open_menu">Instrument und Einstellungen</string>
+    <string name="tuner_string_auto">Saite %1$s</string>
+    <string name="tuner_string_locked">Saite %1$s, festgelegt</string>
+    <string name="tuner_string_tuned">Saite %1$s, gestimmt</string>
+
+    <!-- Microphone permission and errors -->
+    <string name="permission_text">TunerToGo hört dein Instrument, um die Tonhöhe zu messen. Der Ton wird live auf der Uhr ausgewertet und nie aufgezeichnet oder übertragen.</string>
+    <string name="permission_denied_text">Der Mikrofonzugriff ist ausgeschaltet. Erlaube ihn in den App-Einstellungen, um zu stimmen.</string>
+    <string name="permission_allow">Erlauben</string>
+    <string name="permission_open_settings">Einstellungen</string>
+    <string name="error_microphone">Das Mikrofon ist gerade nicht verfügbar.</string>
+    <string name="action_retry">Erneut versuchen</string>
+
+    <!-- Menu -->
+    <string name="menu_instrument">Instrument</string>
+    <string name="menu_reference_tone">Referenzton</string>
+    <string name="menu_reference_tone_summary">Nach Gehör stimmen</string>
+    <string name="section_tuning">Stimmung</string>
+    <string name="section_display">Anzeige</string>
+    <string name="section_behavior">Verhalten</string>
+    <string name="setting_reference_pitch">Kammerton</string>
+    <string name="reference_value">A4 = %1$d Hz</string>
+    <string name="setting_transposition">Transposition</string>
+    <string name="transposition_concert">Klingend</string>
+    <string name="transposition_key">Instrument in %1$s</string>
+    <string name="transposition_b_flat_examples">Trompete, Klarinette, Tenorsax</string>
+    <string name="transposition_e_flat_examples">Alt- und Baritonsax</string>
+    <string name="transposition_f_examples">Waldhorn</string>
+    <string name="transposition_hint">Zeigt im chromatischen Modus die notierten Töne</string>
+    <string name="setting_note_names">Notennamen</string>
+    <string name="naming_english">Englisch</string>
+    <string name="naming_english_example">C D E F G A B</string>
+    <string name="naming_german">Deutsch</string>
+    <string name="naming_german_example">C D E F G A H</string>
+    <string name="naming_solfege">Solmisation</string>
+    <string name="naming_solfege_example">Do Re Mi Fa Sol La Si</string>
+    <string name="setting_accidentals">Vorzeichen</string>
+    <string name="accidentals_sharps">Kreuze</string>
+    <string name="accidentals_flats">Bes</string>
+    <string name="setting_tolerance">Stimmbereich</string>
+    <plurals name="tolerance_value">
+        <item quantity="one">±%1$d Cent</item>
+        <item quantity="other">±%1$d Cent</item>
+    </plurals>
+    <string name="setting_display_style">Darstellung</string>
+    <string name="display_gauge">Skala</string>
+    <string name="display_strobe">Stroboskop</string>
+    <string name="setting_haptics">Vibrieren, wenn gestimmt</string>
+    <string name="setting_keep_screen_on">Display anlassen</string>
+    <string name="setting_keep_screen_on_summary">Während des Stimmens</string>
+    <string name="setting_sensitivity">Empfindlichkeit</string>
+    <string name="sensitivity_low">Niedrig</string>
+    <string name="sensitivity_low_summary">Laute Umgebung</string>
+    <string name="sensitivity_normal">Normal</string>
+    <string name="sensitivity_high">Hoch</string>
+    <string name="sensitivity_high_summary">Leise Instrumente</string>
+    <string name="menu_about">Über</string>
+
+    <!-- Reference tone -->
+    <string name="tone_play">Abspielen</string>
+    <string name="tone_stop">Stopp</string>
+
+    <!-- About -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_license">Open Source unter der MIT-Lizenz</string>
+    <string name="about_privacy">Der Ton wird in Echtzeit auf der Uhr ausgewertet. Nichts wird aufgezeichnet, gespeichert oder übertragen.</string>
+    <string name="about_author">Von DevEmperor</string>
+
+    <!-- Tile -->
+    <string name="tile_label">Stimmgerät</string>
+    <string name="tile_description">Mit einem Tippen stimmen</string>
+    <string name="tile_tune">Stimmen</string>
+
+    <!-- Instruments -->
+    <string name="instrument_chromatic">Chromatisch</string>
+    <string name="instrument_chromatic_summary">Jeder Ton</string>
+    <string name="instrument_guitar">Gitarre</string>
+    <string name="instrument_guitar7">7-saitige Gitarre</string>
+    <string name="instrument_guitar7_short">7-Saiter</string>
+    <string name="instrument_bass">Bass</string>
+    <string name="instrument_ukulele">Ukulele</string>
+    <string name="instrument_violin">Violine</string>
+    <string name="instrument_viola">Bratsche</string>
+    <string name="instrument_cello">Cello</string>
+    <string name="instrument_double_bass">Kontrabass</string>
+    <string name="instrument_mandolin">Mandoline</string>
+    <string name="instrument_banjo">Banjo</string>
+
+    <!-- Tunings -->
+    <string name="tuning_standard">Standard</string>
+    <string name="tuning_eb_standard">E♭-Standard</string>
+    <string name="tuning_d_standard">D-Standard</string>
+    <string name="tuning_five_string">5-Saiter</string>
+    <string name="tuning_six_string">6-Saiter</string>
+    <string name="tuning_d_tuning">D-Stimmung</string>
+    <string name="tuning_baritone">Bariton</string>
+    <string name="tuning_orchestra">Orchester</string>
+    <string name="tuning_solo">Solo</string>
+</resources>

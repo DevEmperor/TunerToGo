@@ -1,15 +1,21 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
+# Gradle / build output
+.gradle/
+.kotlin/
+build/
 /captures
 .externalNativeBuild
 .cxx
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Local configuration and secrets
 local.properties
+keystore.properties
+*.jks
+*.keystore
+
+# Release artifacts are attached to GitHub releases, not committed
+/dist/

@@ -1,0 +1,1 @@
+Komplett neu gebaut mit neuem Design: genauere Tonerkennung, Instrumentmodus mit automatischer Saitenerkennung für Gitarre, Bass, Ukulele, Geige, Cello und mehr, Skala und Stroboskop, Vibration beim Treffen des Tons, Kammerton, Transposition, deutsche Notennamen und Solmisation, Referenzton und Kachel.

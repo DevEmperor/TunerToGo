@@ -1,4 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TunerToGo</string>
-    <string name="ttg_no_permission">TunerToGo needs permission to access the microphone.</string>
+    <string name="app_name" translatable="false">TunerToGo</string>
+    <!-- In-app headings: stays "TunerToGo" in debug builds, whose launcher label differs. -->
+    <string name="app_title" translatable="false">TunerToGo</string>
+
+    <!-- Tuner screen -->
+    <string name="tuner_play_a_note">Play a note</string>
+    <string name="tuner_cents">%1$s ¢</string>
+    <string name="tuner_hz">%1$s Hz</string>
+    <string name="tuner_note_description">%1$s, %2$s cents</string>
+    <string name="tuner_silenced">Another app is using the microphone</string>
+    <string name="tuner_open_menu">Instrument and settings</string>
+    <string name="tuner_string_auto">%1$s string</string>
+    <string name="tuner_string_locked">%1$s string, locked</string>
+    <string name="tuner_string_tuned">%1$s string, tuned</string>
+
+    <!-- Microphone permission and errors -->
+    <string name="permission_text">TunerToGo listens to your instrument to measure its pitch. Sound is analyzed live on your watch and never recorded or sent anywhere.</string>
+    <string name="permission_denied_text">Microphone access is turned off. Allow it in the app settings to tune.</string>
+    <string name="permission_allow">Allow</string>
+    <string name="permission_open_settings">Open settings</string>
+    <string name="error_microphone">The microphone is not available right now.</string>
+    <string name="action_retry">Try again</string>
+
+    <!-- Menu -->
+    <string name="menu_instrument">Instrument</string>
+    <string name="menu_reference_tone">Reference tone</string>
+    <string name="menu_reference_tone_summary">Tune by ear</string>
+    <string name="section_tuning">Tuning</string>
+    <string name="section_display">Display</string>
+    <string name="section_behavior">Behavior</string>
+    <string name="setting_reference_pitch">Reference pitch</string>
+    <string name="reference_value">A4 = %1$d Hz</string>
+    <string name="setting_transposition">Transposition</string>
+    <string name="transposition_concert">Concert pitch</string>
+    <string name="transposition_key">Instrument in %1$s</string>
+    <string name="transposition_b_flat_examples">Trumpet, clarinet, tenor sax</string>
+    <string name="transposition_e_flat_examples">Alto and baritone sax</string>
+    <string name="transposition_f_examples">French horn</string>
+    <string name="transposition_hint">Shows written notes in chromatic mode</string>
+    <string name="setting_note_names">Note names</string>
+    <string name="naming_english">English</string>
+    <string name="naming_english_example">C D E F G A B</string>
+    <string name="naming_german">German</string>
+    <string name="naming_german_example">C D E F G A H</string>
+    <string name="naming_solfege">Solfège</string>
+    <string name="naming_solfege_example">Do Re Mi Fa Sol La Si</string>
+    <string name="setting_accidentals">Accidentals</string>
+    <string name="accidentals_sharps">Sharps</string>
+    <string name="accidentals_flats">Flats</string>
+    <string name="setting_tolerance">In-tune range</string>
+    <plurals name="tolerance_value">
+        <item quantity="one">±%1$d cent</item>
+        <item quantity="other">±%1$d cents</item>
+    </plurals>
+    <string name="setting_display_style">Tuner style</string>
+    <string name="display_gauge">Gauge</string>
+    <string name="display_strobe">Strobe</string>
+    <string name="setting_haptics">Vibrate when in tune</string>
+    <string name="setting_keep_screen_on">Keep screen on</string>
+    <string name="setting_keep_screen_on_summary">While tuning</string>
+    <string name="setting_sensitivity">Sensitivity</string>
+    <string name="sensitivity_low">Low</string>
+    <string name="sensitivity_low_summary">Noisy surroundings</string>
+    <string name="sensitivity_normal">Normal</string>
+    <string name="sensitivity_high">High</string>
+    <string name="sensitivity_high_summary">Quiet instruments</string>
+    <string name="menu_about">About</string>
+
+    <!-- Reference tone -->
+    <string name="tone_play">Play</string>
+    <string name="tone_stop">Stop</string>
+
+    <!-- About -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_license">Open source under the MIT License</string>
+    <string name="about_privacy">Sound is analyzed on your watch in real time. Nothing is recorded, stored or transmitted.</string>
+    <string name="about_source" translatable="false">github.com/DevEmperor/TunerToGo</string>
+    <string name="about_author">Made by DevEmperor</string>
+
+    <!-- Tile -->
+    <string name="tile_label">Tuner</string>
+    <string name="tile_description">Start tuning with one tap</string>
+    <string name="tile_tune">Tune</string>
+
+    <!-- Instruments -->
+    <string name="instrument_chromatic">Chromatic</string>
+    <string name="instrument_chromatic_summary">Any note</string>
+    <string name="instrument_guitar">Guitar</string>
+    <string name="instrument_guitar7">7-string guitar</string>
+    <string name="instrument_guitar7_short">7-string</string>
+    <string name="instrument_bass">Bass</string>
+    <string name="instrument_ukulele">Ukulele</string>
+    <string name="instrument_violin">Violin</string>
+    <string name="instrument_viola">Viola</string>
+    <string name="instrument_cello">Cello</string>
+    <string name="instrument_double_bass">Double bass</string>
+    <string name="instrument_mandolin">Mandolin</string>
+    <string name="instrument_banjo">Banjo</string>
+
+    <!-- Tunings -->
+    <string name="tuning_standard">Standard</string>
+    <string name="tuning_eb_standard">E♭ Standard</string>
+    <string name="tuning_d_standard">D Standard</string>
+    <string name="tuning_drop_d" translatable="false">Drop D</string>
+    <string name="tuning_drop_c" translatable="false">Drop C</string>
+    <string name="tuning_drop_a" translatable="false">Drop A</string>
+    <string name="tuning_dadgad" translatable="false">DADGAD</string>
+    <string name="tuning_open_d" translatable="false">Open D</string>
+    <string name="tuning_open_g" translatable="false">Open G</string>
+    <string name="tuning_open_e" translatable="false">Open E</string>
+    <string name="tuning_open_c" translatable="false">Open C</string>
+    <string name="tuning_five_string">5-string</string>
+    <string name="tuning_six_string">6-string</string>
+    <string name="tuning_low_g" translatable="false">Low G</string>
+    <string name="tuning_d_tuning">D tuning</string>
+    <string name="tuning_baritone">Baritone</string>
+    <string name="tuning_orchestra">Orchestra</string>
+    <string name="tuning_solo">Solo</string>
+    <string name="tuning_double_c" translatable="false">Double C</string>
 </resources>

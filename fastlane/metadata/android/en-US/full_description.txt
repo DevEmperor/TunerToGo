@@ -1,0 +1,34 @@
+TunerToGo turns your Wear OS watch into a precise tuner – always on your wrist, ready the moment you pick up your instrument.
+
+<b>Tune fast and precisely</b>
+• Accurate pitch detection from 25 Hz (low B of a 5-string bass) up to 4.5 kHz
+• A calm, readable display: the needle is smoothed, short slips are ignored, and the last note stays on screen for a moment after the string stops ringing
+• The colour shows how far off you are – coral, amber, lime, then green when you hit the note
+• A short vibration when a string is in tune, so you can keep your eyes on the pegs
+
+<b>Made for your instrument</b>
+• Instrument mode with automatic string detection
+• Guitar: Standard, E♭ Standard, D Standard, Drop D, Drop C, DADGAD, Open D, Open G, Open E, Open C
+• 7-string guitar, bass (4, 5 and 6 strings), ukulele (standard, low G, D tuning, baritone), violin, viola, cello, double bass, mandolin, banjo
+• Tap a string to lock the tuner on it – handy when a string is far off
+• Tuned strings get a tick
+• Chromatic mode for every other instrument and for your voice
+
+<b>For musicians</b>
+• Reference pitch from 400 to 480 Hz, e.g. 442 Hz for orchestras or 415 Hz for baroque music
+• Transposition for B♭, E♭ and F instruments (trumpet, clarinet, saxophone, horn)
+• Note names in English (B), German (H) or solfège (Do Re Mi), with sharps or flats
+• Gauge or strobe display – the strobe stands still when you are in tune
+• Reference tone to tune by ear on watches with a speaker
+• Adjustable in-tune range and microphone sensitivity
+
+<b>Built for Wear OS</b>
+• Modern Material 3 design for round watches
+• Tile to start tuning with one tap
+• Works standalone, no phone app needed
+• Keeps the screen on while you tune and lets it sleep again when you stop
+
+<b>Private</b>
+The microphone is only used while the tuner is open. Sound is analysed live on your watch; nothing is recorded, stored or sent anywhere. TunerToGo has no internet access at all.
+
+TunerToGo is open source (MIT License): github.com/DevEmperor/TunerToGo

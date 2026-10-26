@@ -1,0 +1,34 @@
+TunerToGo macht deine Wear-OS-Uhr zum präzisen Stimmgerät – immer am Handgelenk, bereit, sobald du dein Instrument in die Hand nimmst.
+
+<b>Schnell und genau stimmen</b>
+• Präzise Tonerkennung von 25 Hz (tiefes H eines 5-saitigen Basses) bis 4,5 kHz
+• Ruhige, gut ablesbare Anzeige: die Nadel ist geglättet, kurze Ausreißer werden ignoriert, und der letzte Ton bleibt noch einen Moment stehen, wenn die Saite ausklingt
+• Die Farbe zeigt, wie weit du daneben liegst – Koralle, Bernstein, Limette und Grün, sobald der Ton sitzt
+• Eine kurze Vibration, wenn die Saite gestimmt ist – die Augen bleiben bei den Wirbeln
+
+<b>Für dein Instrument gemacht</b>
+• Instrumentmodus mit automatischer Saitenerkennung
+• Gitarre: Standard, E♭-Standard, D-Standard, Drop D, Drop C, DADGAD, Open D, Open G, Open E, Open C
+• 7-saitige Gitarre, Bass (4, 5 und 6 Saiten), Ukulele (Standard, Low G, D-Stimmung, Bariton), Violine, Bratsche, Cello, Kontrabass, Mandoline, Banjo
+• Tippe auf eine Saite, um das Stimmgerät auf sie festzulegen – praktisch, wenn eine Saite weit verstimmt ist
+• Gestimmte Saiten bekommen einen Haken
+• Chromatischer Modus für alle anderen Instrumente und für deine Stimme
+
+<b>Für Musikerinnen und Musiker</b>
+• Kammerton von 400 bis 480 Hz, z. B. 442 Hz für Orchester oder 415 Hz für Barockmusik
+• Transposition für B-, Es- und F-Instrumente (Trompete, Klarinette, Saxophon, Horn)
+• Notennamen deutsch (H), englisch (B) oder als Solmisation (Do Re Mi), mit Kreuzen oder Bes
+• Skala oder Stroboskop – das Stroboskop steht still, wenn der Ton stimmt
+• Referenzton zum Stimmen nach Gehör auf Uhren mit Lautsprecher
+• Einstellbarer Stimmbereich und Mikrofonempfindlichkeit
+
+<b>Für Wear OS gebaut</b>
+• Modernes Material-3-Design für runde Uhren
+• Kachel zum Starten mit einem Tippen
+• Funktioniert eigenständig, keine Smartphone-App nötig
+• Hält das Display beim Stimmen an und lässt es danach wieder schlafen
+
+<b>Privat</b>
+Das Mikrofon wird nur genutzt, solange das Stimmgerät geöffnet ist. Der Ton wird live auf der Uhr ausgewertet; nichts wird aufgezeichnet, gespeichert oder übertragen. TunerToGo hat überhaupt keinen Internetzugriff.
+
+TunerToGo ist Open Source (MIT-Lizenz): github.com/DevEmperor/TunerToGo
