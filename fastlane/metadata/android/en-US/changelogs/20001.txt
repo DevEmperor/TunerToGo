@@ -1,0 +1,1 @@
+Polished for round watches: the start screen shows the app icon, lists no longer end under the curved screen edge, and titles and buttons fit on small watches with large text.

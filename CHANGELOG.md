@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.1 – 2026-11-10
+
+Fixes for the Wear OS quality review on Google Play.
+
+- The start screen shows the full round app icon at 48 × 48 dp on black.
+- Lists keep their first and last entry inside the round display: the last menu entry no
+  longer ends under the curved bottom edge.
+- Screen titles, the reference tone frequency and button labels fit on small watches with a
+  large font setting; long words are hyphenated instead of broken at random letters.
+
 ## 2.0.0 – 2026-10-26
 
 Rebuilt from scratch in Kotlin and Jetpack Compose for Wear OS (Material 3).

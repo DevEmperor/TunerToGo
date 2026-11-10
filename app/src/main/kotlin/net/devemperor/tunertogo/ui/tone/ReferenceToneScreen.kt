@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -42,6 +41,7 @@ import net.devemperor.tunertogo.music.Pitch
 import net.devemperor.tunertogo.tuner.TunerViewModel
 import net.devemperor.tunertogo.settings.TunerSettings
 import net.devemperor.tunertogo.ui.KeepScreenOn
+import net.devemperor.tunertogo.ui.components.ScreenTitle
 import net.devemperor.tunertogo.ui.theme.TunerColors
 
 /** Chromatic range offered in chromatic mode: C2 to B5. */
@@ -89,13 +89,7 @@ fun ReferenceToneScreen(viewModel: TunerViewModel, settings: TunerSettings) {
     ScreenScaffold(timeText = {}) {
         BoxWithConstraints(Modifier.fillMaxSize()) {
             val d = minOf(maxWidth, maxHeight)
-            Text(
-                text = stringResource(R.string.menu_reference_tone),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.align(Alignment.TopCenter).padding(top = d * 0.12f).fillMaxWidth(),
-            )
+            ScreenTitle(stringResource(R.string.menu_reference_tone), d, Modifier.align(Alignment.TopCenter))
             Picker(
                 state = state,
                 contentDescription = { notes[state.selectedOptionIndex.coerceIn(notes.indices)].second.text },
@@ -124,11 +118,12 @@ fun ReferenceToneScreen(viewModel: TunerViewModel, settings: TunerSettings) {
                 style = MaterialTheme.typography.bodySmall,
                 color = TunerColors.Muted,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.align(Alignment.Center).offset(y = d * 0.18f).fillMaxWidth(),
+                modifier = Modifier.align(Alignment.Center).offset(y = d * 0.16f).fillMaxWidth(),
             )
             EdgeButton(
                 onClick = { if (playing != null) viewModel.stopTone() else viewModel.playTone(selectedMidi) },
-                buttonSize = EdgeButtonSize.Small,
+                // Extra small leaves room for the frequency line on small watches with large text.
+                buttonSize = EdgeButtonSize.ExtraSmall,
                 modifier = Modifier.align(Alignment.BottomCenter),
             ) {
                 Icon(

@@ -75,6 +75,8 @@ import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.requestFocusOnHierarchyActive
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.Icon
+import androidx.wear.compose.material3.ListHeaderDefaults
+import androidx.wear.compose.material3.TextDefaults
 import androidx.wear.compose.material3.LocalContentColor
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
@@ -522,17 +524,31 @@ private fun MessageScreen(iconRes: Int, text: String, actionLabel: String, onAct
         scrollState = listState,
         edgeButton = {
             EdgeButton(onClick = onAction, buttonSize = EdgeButtonSize.Medium) {
-                Text(actionLabel, maxLines = 2, textAlign = TextAlign.Center)
+                // A single word ("Erlauben") shrinks instead of breaking mid-word with a large
+                // font setting; several words may wrap onto two lines.
+                val style = MaterialTheme.typography.labelMedium
+                val contentColor = LocalContentColor.current
+                BasicText(
+                    text = actionLabel,
+                    style = style.copy(textAlign = TextAlign.Center),
+                    color = { contentColor },
+                    maxLines = if (' ' in actionLabel) 2 else 1,
+                    overflow = TextOverflow.Ellipsis,
+                    autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = style.fontSize),
+                )
             }
         },
     ) { contentPadding ->
         TransformingLazyColumn(state = listState, contentPadding = contentPadding) {
+            // Minimum list paddings keep the first and last item clear of the round edges.
             item {
                 Icon(
                     painter = painterResource(iconRes),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(32.dp),
+                    modifier = Modifier
+                        .size(32.dp)
+                        .minimumVerticalContentPadding(top = ListHeaderDefaults.minimumTopListContentPadding, bottom = 0.dp),
                 )
             }
             item {
@@ -541,7 +557,9 @@ private fun MessageScreen(iconRes: Int, text: String, actionLabel: String, onAct
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(horizontal = 6.dp),
+                    modifier = Modifier
+                        .padding(horizontal = 6.dp)
+                        .minimumVerticalContentPadding(top = 0.dp, bottom = TextDefaults.minimumBottomListContentPadding),
                 )
             }
         }

@@ -1,0 +1,1 @@
+Feinschliff für runde Uhren: Der Startbildschirm zeigt das App-Icon, Listen enden nicht mehr unter dem gebogenen Bildschirmrand, und Titel und Knöpfe passen auch auf kleine Uhren mit großer Schrift.

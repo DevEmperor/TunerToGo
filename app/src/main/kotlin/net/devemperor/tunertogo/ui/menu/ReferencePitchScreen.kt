@@ -3,9 +3,7 @@ package net.devemperor.tunertogo.ui.menu
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
@@ -36,6 +34,7 @@ import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch
 import net.devemperor.tunertogo.R
 import net.devemperor.tunertogo.settings.TunerSettings
+import net.devemperor.tunertogo.ui.components.ScreenTitle
 
 /** A4 calibration from 400 to 480 Hz on a wheel that follows the crown. */
 @Composable
@@ -70,13 +69,7 @@ fun ReferencePitchScreen(
     ScreenScaffold(timeText = {}) {
         BoxWithConstraints(Modifier.fillMaxSize()) {
             val d = minOf(maxWidth, maxHeight)
-            Text(
-                text = stringResource(R.string.setting_reference_pitch),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.align(Alignment.TopCenter).padding(top = d * 0.12f).fillMaxWidth(),
-            )
+            ScreenTitle(stringResource(R.string.setting_reference_pitch), d, Modifier.align(Alignment.TopCenter))
             Row(
                 modifier = Modifier.align(Alignment.Center).offset(y = -d * 0.06f),
                 verticalAlignment = Alignment.CenterVertically,
