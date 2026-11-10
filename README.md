@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=net.devemperor.tunertogo"><img alt="Google Play" src="https://img.shields.io/badge/google%20play-wear%20os-45e6a6?labelColor=0e1f1b&style=flat-square&logo=googleplay&logoColor=white"></a>
-  <a href="https://github.com/DevEmperor/TunerToGo/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/DevEmperor/TunerToGo/ci.yml?branch=master&label=tests&color=45e6a6&labelColor=0e1f1b&style=flat-square"></a>
   <img alt="Wear OS 3+" src="https://img.shields.io/badge/wear%20os-3%2B-45e6a6?labelColor=0e1f1b&style=flat-square">
   <a href="LICENSE"><img alt="Apache 2.0 license" src="https://img.shields.io/badge/license-Apache%202.0-45e6a6?labelColor=0e1f1b&style=flat-square"></a>
 </p>
